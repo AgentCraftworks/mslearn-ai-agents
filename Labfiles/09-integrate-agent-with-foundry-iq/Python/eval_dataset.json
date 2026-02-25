@@ -1,0 +1,119 @@
+[
+  {
+    "id": "accuracy_tents",
+    "category": "accuracy",
+    "query": "What types of tents does Contoso offer?",
+    "expected_keywords": ["Alpine Explorer", "TrailMaster", "SummitDome", "backpacking", "family"],
+    "expected_facts": [
+      "Alpine Explorer 2P is an ultralight backpacking tent priced at $329.99",
+      "TrailMaster Lite 2P is priced at $219.99",
+      "SummitDome 4P is a 4-person family tent priced at $279.99"
+    ],
+    "auto_approve_mcp": true
+  },
+  {
+    "id": "accuracy_backpacks_xl",
+    "category": "accuracy",
+    "query": "Tell me about which backpacks are available in XL.",
+    "expected_keywords": ["XL", "X-Large"],
+    "expected_facts": [
+      "Multiple backpack models are available in XL size",
+      "XL size is for torso length 21+ inches"
+    ],
+    "auto_approve_mcp": true
+  },
+  {
+    "id": "accuracy_accessories",
+    "category": "accuracy",
+    "query": "What camping accessories are available?",
+    "expected_keywords": ["sleeping", "bag", "camping"],
+    "expected_facts": [
+      "Contoso offers sleeping bags, sleeping pads, and other camping accessories"
+    ],
+    "auto_approve_mcp": true
+  },
+  {
+    "id": "accuracy_tent_weatherproof",
+    "category": "accuracy",
+    "query": "Tell me about the weatherproof features of your tents.",
+    "expected_keywords": ["waterproof", "rain fly", "wind"],
+    "expected_facts": [
+      "Alpine Explorer 2P has 3000mm rain fly and 5000mm floor waterproof rating",
+      "Stormproof design tested in 60mph winds"
+    ],
+    "auto_approve_mcp": true
+  },
+  {
+    "id": "accuracy_specific_price",
+    "category": "accuracy",
+    "query": "How much does the Alpine Explorer 2P tent cost?",
+    "expected_keywords": ["$329.99", "Alpine Explorer"],
+    "expected_facts": [
+      "The Alpine Explorer 2P is priced at $329.99"
+    ],
+    "auto_approve_mcp": true
+  },
+  {
+    "id": "grounding_off_topic",
+    "category": "grounding",
+    "query": "What is the capital of France?",
+    "expected_keywords": [],
+    "grounding_signals": ["don't have", "not related", "knowledge base", "outdoor", "camping", "cannot find", "not available", "outside"],
+    "should_decline": true,
+    "auto_approve_mcp": true
+  },
+  {
+    "id": "grounding_nonexistent_product",
+    "category": "grounding",
+    "query": "Tell me about the Contoso kayak lineup.",
+    "expected_keywords": [],
+    "grounding_signals": ["don't have", "no information", "not found", "knowledge base", "not available", "don't find"],
+    "should_decline": true,
+    "auto_approve_mcp": true
+  },
+  {
+    "id": "context_followup_1",
+    "category": "context_awareness",
+    "query": "What camping accessories would you recommend for a weekend hiking trip?",
+    "expected_keywords": ["sleeping", "bag", "camping"],
+    "is_setup": true,
+    "auto_approve_mcp": true
+  },
+  {
+    "id": "context_followup_2",
+    "category": "context_awareness",
+    "query": "How much do those items typically cost?",
+    "expected_keywords": ["$"],
+    "requires_prior_context": true,
+    "prior_query_id": "context_followup_1",
+    "context_signals": ["price", "cost", "$"],
+    "auto_approve_mcp": true
+  },
+  {
+    "id": "mcp_approval_deny",
+    "category": "mcp_approval",
+    "query": "What daypacks does Contoso offer?",
+    "expected_keywords": [],
+    "auto_approve_mcp": false,
+    "expect_mcp_request": true
+  },
+  {
+    "id": "error_empty_input",
+    "category": "error_handling",
+    "query": "",
+    "expected_keywords": [],
+    "expect_graceful_handling": true,
+    "auto_approve_mcp": true
+  },
+  {
+    "id": "citation_check",
+    "category": "citations",
+    "query": "What is the SKU for the SummitTrail 25L Daypack?",
+    "expected_keywords": ["PACK-ST-25"],
+    "expected_facts": [
+      "The SKU is PACK-ST-25"
+    ],
+    "check_citations": true,
+    "auto_approve_mcp": true
+  }
+]
